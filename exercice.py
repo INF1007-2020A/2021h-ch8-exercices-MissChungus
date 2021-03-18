@@ -6,6 +6,7 @@ PERCENTAGE_TO_LETTER = {"A*": [95, 101], "A": [90, 95], "B+": [85, 90], "B": [80
 # TODO: Importez vos modules ici
 import os
 import sys
+import sys."recette.py" *
 
 # TODO: Définissez vos fonction ici
 def compare_files(file1, file2):
@@ -26,8 +27,19 @@ def triple_spaces(file, file2):
         for line1 in f1:
             f2.write(line1.replace(' ', '   '))
 
+def note_to_lettre(file1, file2):
+    with open(file1, 'r', encoding='utf-8') as f1, open(file2, 'w', encoding='utf-8') as f2:
+        for line1 in f1:
+            for lettre, notes in PERCENTAGE_TO_LETTER.items():
+                if notes[1] > int(line1.strip()) >= notes[0]:
+                    f2.write(line1.strip() + ' ' + lettre + '\n')
+                    break
+
+
+
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
     compare_files("exemple.txt", "exemple2.txt")
     triple_spaces('exemple.txt', 'exemple_triple_espaces.txt')
+    note_to_lettre('notes.txt', 'notes_et_lettres.txt')
     pass
